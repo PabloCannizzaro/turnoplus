@@ -6,7 +6,7 @@ from pathlib import Path
 
 def main() -> None:
     ca_pem = os.getenv("AIVEN_CA_PEM", "")
-    target_path = Path(os.getenv("AIVEN_SSL_CA_PATH", "/opt/render/project/src/backend/certs/aiven-ca.pem"))
+    target_path = Path(os.getenv("AIVEN_SSL_CA_PATH", "/app/backend/certs/aiven-ca.pem"))
     if not ca_pem:
         return
     target_path.parent.mkdir(parents=True, exist_ok=True)
