@@ -1,3 +1,4 @@
+import os
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
@@ -7,7 +8,8 @@ from app.api.v1 import api_v1_router
 def create_app() -> FastAPI:
     app = FastAPI(title="TurnoPlus API", version="0.1.0")
 
-    allowed_origins = [
+    cors_from_env = os.getenv("CORS_ORIGINS", "")
+    allowed_origins = [o for o in (s.strip() for s in cors_from_env.split(",")) if o] or [
         "http://localhost:4200",
         "http://127.0.0.1:4200",
     ]
